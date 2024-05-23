@@ -6,6 +6,9 @@ JENKINS_URL="http://localhost:8080"
 # Usuario admin
 USERNAME="admin"
 
+# Descarga el script desde GitHub
+curl -o unlockJenkins.sh https://raw.githubusercontent.com/fernandogonzalez90/MyProjecDevops/main/Infraestructura/Jenkins/unlockJenkins.sh
+
 # Obtiene la contraseña inicial
 PASSWORD=$(cat /var/jenkins_home/secrets/initialAdminPassword)
 
@@ -21,3 +24,5 @@ curl -X POST "$JENKINS_URL/jnlp/console" \
   -u $USERNAME:$PASSWORD \
   -H "$CRUMB_FIELD:$CRUMB_VALUE" \
   -H "Content-Type: application/x-www-form-urlencoded"
+
+echo "Jenkins unlocked successfully!"
