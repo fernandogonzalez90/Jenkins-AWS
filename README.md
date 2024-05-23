@@ -1,4 +1,4 @@
-# Jenkins en AWS
+# Jenkins en AWS usando Terraform y Docker
 Pruebas para desplegar Jenkins en EC2 de AWS con Terraform y Docker.
 
 ### En esta practica lo que hago es crear un main.tf que contiene:
