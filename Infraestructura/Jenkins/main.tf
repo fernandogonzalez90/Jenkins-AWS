@@ -29,8 +29,6 @@ resource "aws_instance" "jenkins_server" {
       "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin",
       # Run!
       "sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts"
-      # Unblock Jenkins
-      
     ]
   }
 
