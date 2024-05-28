@@ -45,6 +45,11 @@ resource "aws_instance" "jenkins_server" {
               # Añade Jenkins al inicio automatico
               sudo systemctl enable jenkins
 
+              # Se añade el usuario jenkins al grupo de docker para no necesitar ser sudo
+              sudo usermod -aG docker jenkins
+              sudo systemctl restart jenkins
+
+
               EOF
 
   tags = {
