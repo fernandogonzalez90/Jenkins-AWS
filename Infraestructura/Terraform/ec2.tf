@@ -24,7 +24,7 @@ resource "aws_instance" "jenkins_server" {
       sleep 60  # Espera 60 segundos antes de ejecutar los comandos
       echo "[jenkins_server]
       ${self.public_ip} ansible_user=admin ansible_ssh_private_key_file=~/.ssh/id_rsa" > ../Ansible/hosts.ini
-      ansible-playbook -i ../Ansible/hosts.ini ../Ansible/jenkins_setup.yaml
+      ansible-playbook -i ../Ansible/hosts.ini ../Ansible/jenkins_setup.yaml --shh-common-args='-o StrictHostKeyChecking=no'
     EOT
   }
 }
