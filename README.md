@@ -1,5 +1,5 @@
-# Jenkins en AWS usando Terraform y Docker
-Pruebas para desplegar Jenkins en EC2 de AWS con Terraform y Ansible.
+# Jenkins en AWS usando Terraform y Ansible
+Este proyecto despliega Jenkins en AWS usando distintos metodos, hasta el momento se crea la infraestructura con Terraform y se configura esa VPS con Ansible para instalar todo lo necesario para correr Jenkins
 
 ### El proyecto se divide en dos carpetas dentro de Infraestructura:
 #### Terraform:
@@ -24,7 +24,7 @@ Se encarga de crear la infraestructura necesaria en AWS.
 *Devuelve la IP publica con el puerto asignado*
 
 
-#### Terraform:
+#### Ansible:
 Esta carpeta contiene dos archivos:
 - hosts.ini
 
