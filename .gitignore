@@ -1,5 +1,6 @@
 **/clave.pub
 **/*/env
+**/*/get-pip.py
 
 # Local .terraform directories
 **/.terraform/*
