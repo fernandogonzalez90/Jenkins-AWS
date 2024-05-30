@@ -1,27 +1,44 @@
 # Jenkins en AWS usando Terraform y Docker
-Pruebas para desplegar Jenkins en EC2 de AWS con Terraform y Docker.
+Pruebas para desplegar Jenkins en EC2 de AWS con Terraform y Ansible.
 
-### En esta practica lo que hago es crear un main.tf que contiene:
-- provider "aws"
-  (que solo contiene la region)
-- resource "aws_instance"
-  (Este contiene la ami, instance_type, key_name, security_groups, un user_data que ejecuta comandos bash para instalar docker y ejecutar una imagen de Jenkins)
-- resource "aws_security_group"
-  (Contiene los ingress y egress correspondientes para conectarse por ssh y acceder a jenkins desde todas las IPs)
-- resource "aws_key_pair"
-  (Este tiene key_name y public_key desde un file)
-- output "jenkins_url"
-  (al finalizar terraform devuelve la ip publica con el puerto para acceder a Jenkins)
+### El proyecto se divide en dos carpetas dentro de Infraestructura:
+#### Terraform:
+Se encarga de crear la infraestructura necesaria en AWS.
+- main.tf:
+
+*Contiene el Provider*
+- ec2.tf:
+
+*Contine el resource para ec2 y un script para generar autimaticamente el hosts.ini de Ansible y ejecturalo junto con el Playbook*
+
+- par_claves.tf
+
+*Crea un par de claves para conectar Ansible por SSH*
+
+- sg_jenkins.tf
+
+*Crea un grupo de seguridad para el servidor de Jenkins*
+
+- output.tf
+
+*Devuelve la IP publica con el puerto asignado*
+
+
+#### Terraform:
+Esta carpeta contiene dos archivos:
+- hosts.ini
+
+*Este archivo se genera automaticamente con el script dentro de ec2.tf y contiene ip publica y usario de SSH*
+
+- jenkins_setup.yaml
+
+*Es el playbook en el cual estan detallados los TASK para añadir claves GPG, repositorios e instalar los programas necesarios*
 
 <b>Una vez ejecutado todo esto hay que recuperar la clave de Jenkins que se encuentra en :
 "/var/jenkins_home/secrets/initialAdminPassword"
 Esto lo hacemos ingresando a la maquina de EC2 por SSH:</b>
 
 `ssh usuario@ippublica`
-
-Una vez dentro debemos ejecutar una terminal interactiva del contenedor Docker y lo hacemos con:
-
-`sudo docker exec -it jenkins /bin/bash`
 
 Estando dentro del contendor ejecutamos un cat a la ruta que nos dice Jenkins:
 
