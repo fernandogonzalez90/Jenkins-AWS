@@ -1,4 +1,5 @@
 **/clave.pub
+**/*/env
 
 # Local .terraform directories
 **/.terraform/*
